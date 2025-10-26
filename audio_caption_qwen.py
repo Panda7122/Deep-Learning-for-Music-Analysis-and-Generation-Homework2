@@ -25,14 +25,16 @@ for path in tqdm(audio_files, desc="Generating captions"):
     file_name = os.path.splitext(os.path.basename(path))[0]
     out_path = os.path.join(caption_dir, f"{file_name}.txt")
 
-    prompt = """Provide a detailed description of this audio track. Include:
+    prompt = """This audio contains no vocals. Treat the track as fully instrumental—do not infer or invent any vocal content. Where vocal information would normally be reported, explicitly state "no vocals".
+
+Provide a detailed description of this audio track. Include:
 1) Overall genre(s) and specific subgenres or stylistic influences.
 2) Estimated tempo (approximate BPM) and overall rhythmic feel (e.g., laid-back, driving, syncopated).
 3) Instrumentation and arrangement: list prominent instruments, their roles (melody, harmony, rhythm), electronic vs acoustic, notable timbres.
-4) Vocal characteristics if present: gender/age impression, delivery style, backing vocals/harmony, lyrical articulation.
+4) Vocal characteristics if present: if there are no vocals, explicitly state "no vocals".
 5) Song structure and dynamics: intro, verse, chorus, bridge, build-ups, quiet/loud contrasts.
 6) Rhythm details: time signature, groove, percussion patterns, presence of swing or syncopation.
-7) Mood, emotional atmosphere, and lyrical themes or imagery.
+7) Mood, emotional atmosphere, and lyrical themes or imagery (if no vocals, describe mood and any implied themes).
 8) Production and sonic qualities: effects (reverb, delay, distortion), stereo placement, cleanliness vs lo-fi, notable mixing/mastering traits.
 9) Possible cultural, regional, or historical influences and comparable artists.
 10) Five concise tags/keywords that summarize the track.

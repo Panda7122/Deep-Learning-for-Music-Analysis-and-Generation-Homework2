@@ -28,8 +28,10 @@
 
 3. download python 3.8.8 and open a new envirment(I'll name it "env3.8.8") for retrival and captioning.
 4. download python 3.11.9 and open a new envirment(I'll name it "env3.11.9") for generate_music.
-5. in envirment env3.8.8, use `pip3 install -r ./requirements.txt` for install needed module.
-6. in envirment env3.11.9, use `pip3 install -r ./MuseControlLite/requirements.txt` for install needed module.
+5. download python 3.9.19 and open a new envirment(I'll name it "env3.9.19") for audiobox_aesthetics.
+6. in envirment env3.8.8, use `pip3 install -r ./requirements.txt` for install needed module.
+7. in envirment env3.11.9, use `pip3 install -r ./MuseControlLite/requirements.txt` for install needed module.
+8. in envirment env3.9.19, use `pip3 install -r ./requirements_aest.txt` for install needed module.
 
 ## task 1 Retrieval
 
@@ -89,3 +91,23 @@ please run following step in env3.11.9
 run `PYTHONPATH='./MuseControlLite' python3 generate_music_musecontrol.py`
 
 and result will saved to `home/fundwotsai/Deep_MIR_hw2/generated_music`
+
+### evaluation
+
+It will run CLAP, DWT and audiobox_aesthetics for evaluation the result of model
+
+#### CLAP and DWT
+
+please run following step in env3.8.8
+
+run `python3 evaluate.py`
+
+it will save evaluation result at `evaluation_results.csv`
+
+#### audiobox_aesthetics
+
+please run following step in env3.9.19
+
+run `python3 evaluate_aest.py`
+
+it will save CE,CU,PC,PQ result at `evaluation_results.csv`

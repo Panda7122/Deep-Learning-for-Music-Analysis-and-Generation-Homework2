@@ -1,0 +1,470 @@
+{
+  "10_country_114_beat_4-4": {
+    "audio_emb_target_shape": [
+      1,
+      512
+    ],
+    "text_emb_shape": [
+      512
+    ],
+    "audio_emb_gen_shape": [
+      1,
+      512
+    ],
+    "f0_target_preview": [
+      80.0,
+      80.0,
+      80.0,
+      80.0,
+      80.0,
+      80.0,
+      80.0,
+      80.0,
+      NaN,
+      NaN
+    ],
+    "f0_gen_preview": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ],
+    "record": {
+      "target_file": "10_country_114_beat_4-4.wav",
+      "generated_file": "10_country_114_beat_4-4_generated.wav",
+      "caption_file": "10_country_114_beat_4-4.txt",
+      "clap_target_text": 0.5587390661239624,
+      "clap_text_generated": 0.5452520847320557,
+      "clap_generated_target": 0.6522296071052551,
+      "CE": null,
+      "CU": null,
+      "PC": null,
+      "PQ": null,
+      "melody_dtw_similarity": 0.938681173370486,
+      "melody_dtw_norm": 61.31882662951404,
+      "melody_frame_accuracy": 0.45454545454545453
+    }
+  },
+  "4_jazz_120_beat_3-4": {
+    "audio_emb_target_shape": [
+      1,
+      512
+    ],
+    "text_emb_shape": [
+      512
+    ],
+    "audio_emb_gen_shape": [
+      1,
+      512
+    ],
+    "f0_target_preview": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ],
+    "f0_gen_preview": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ],
+    "record": {
+      "target_file": "4_jazz_120_beat_3-4.wav",
+      "generated_file": "4_jazz_120_beat_3-4_generated.wav",
+      "caption_file": "4_jazz_120_beat_3-4.txt",
+      "clap_target_text": 0.3985520601272583,
+      "clap_text_generated": 0.44426172971725464,
+      "clap_generated_target": 0.8159080743789673,
+      "CE": null,
+      "CU": null,
+      "PC": null,
+      "PQ": null,
+      "melody_dtw_similarity": 0.8055718763034219,
+      "melody_dtw_norm": 194.42812369657818,
+      "melody_frame_accuracy": 0.3541666666666667
+    }
+  },
+  "6_rock_102_beat_3-4": {
+    "audio_emb_target_shape": [
+      1,
+      512
+    ],
+    "text_emb_shape": [
+      512
+    ],
+    "audio_emb_gen_shape": [
+      1,
+      512
+    ],
+    "f0_target_preview": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ],
+    "f0_gen_preview": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      80.0,
+      80.0,
+      81.3983753682149,
+      82.8211939073102
+    ],
+    "record": {
+      "target_file": "6_rock_102_beat_3-4.wav",
+      "generated_file": "6_rock_102_beat_3-4_generated.wav",
+      "caption_file": "6_rock_102_beat_3-4.txt",
+      "clap_target_text": 0.5298184156417847,
+      "clap_text_generated": 0.48787257075309753,
+      "clap_generated_target": 0.8160524368286133,
+      "CE": null,
+      "CU": null,
+      "PC": null,
+      "PQ": null,
+      "melody_dtw_similarity": 0.8745514557200739,
+      "melody_dtw_norm": 125.44854427992617,
+      "melody_frame_accuracy": 0.0425531914893617
+    }
+  },
+  "Hedwig\u2019s theme x dizi \uff5cfrom Harry Potter \uff5c\u7af9\u7b1b\u4e5f\u80fd\u65bd\u9b54\u6cd5\uff01Bamboo flute_60s": {
+    "audio_emb_target_shape": [
+      1,
+      512
+    ],
+    "text_emb_shape": [
+      512
+    ],
+    "audio_emb_gen_shape": [
+      1,
+      512
+    ],
+    "f0_target_preview": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ],
+    "f0_gen_preview": [
+      NaN,
+      NaN,
+      NaN,
+      378.3544915286874,
+      374.0087195395986,
+      369.7128629991273,
+      365.4663485794469,
+      361.268609537962,
+      361.268609537962,
+      361.268609537962
+    ],
+    "record": {
+      "target_file": "Hedwig\u2019s theme x dizi \uff5cfrom Harry Potter \uff5c\u7af9\u7b1b\u4e5f\u80fd\u65bd\u9b54\u6cd5\uff01Bamboo flute_60s.mp3",
+      "generated_file": "Hedwig\u2019s theme x dizi \uff5cfrom Harry Potter \uff5c\u7af9\u7b1b\u4e5f\u80fd\u65bd\u9b54\u6cd5\uff01Bamboo flute_60s_generated.wav",
+      "caption_file": "Hedwig\u2019s theme x dizi \uff5cfrom Harry Potter \uff5c\u7af9\u7b1b\u4e5f\u80fd\u65bd\u9b54\u6cd5\uff01Bamboo flute_60s.txt",
+      "clap_target_text": 0.4633694887161255,
+      "clap_text_generated": 0.6010357141494751,
+      "clap_generated_target": 0.6801396012306213,
+      "CE": null,
+      "CU": null,
+      "PC": null,
+      "PQ": null,
+      "melody_dtw_similarity": 0.5676448821190057,
+      "melody_dtw_norm": 432.35511788099427,
+      "melody_frame_accuracy": 0.04012112036336109
+    }
+  },
+  "Mussorgsky\uff1a Pictures at an Exhibition (Pletnev, Andsnes)_60s": {
+    "audio_emb_target_shape": [
+      1,
+      512
+    ],
+    "text_emb_shape": [
+      512
+    ],
+    "audio_emb_gen_shape": [
+      1,
+      512
+    ],
+    "f0_target_preview": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ],
+    "f0_gen_preview": [
+      NaN,
+      NaN,
+      230.22937280173122,
+      187.0043597697993,
+      185.92729391325432,
+      185.92729391325432,
+      184.85643149956366,
+      184.85643149956366,
+      184.85643149956366,
+      184.85643149956366
+    ],
+    "record": {
+      "target_file": "Mussorgsky\uff1a Pictures at an Exhibition (Pletnev, Andsnes)_60s.mp3",
+      "generated_file": "Mussorgsky\uff1a Pictures at an Exhibition (Pletnev, Andsnes)_60s_generated.wav",
+      "caption_file": "Mussorgsky\uff1a Pictures at an Exhibition (Pletnev, Andsnes)_60s.txt",
+      "clap_target_text": 0.4584496021270752,
+      "clap_text_generated": 0.5424100756645203,
+      "clap_generated_target": 0.7310519218444824,
+      "CE": null,
+      "CU": null,
+      "PC": null,
+      "PQ": null,
+      "melody_dtw_similarity": 0.7143557668802206,
+      "melody_dtw_norm": 285.64423311977936,
+      "melody_frame_accuracy": 0.020263424518743668
+    }
+  },
+  "Spirited Away OST\u300cAlways With Me \u29f8 Itsumo Nando Demo\u300dRu's Piano Cover [Sheet Music]_60s": {
+    "audio_emb_target_shape": [
+      1,
+      512
+    ],
+    "text_emb_shape": [
+      512
+    ],
+    "audio_emb_gen_shape": [
+      1,
+      512
+    ],
+    "f0_target_preview": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ],
+    "f0_gen_preview": [
+      393.96621227037315,
+      393.96621227037315,
+      393.96621227037315,
+      393.96621227037315,
+      393.96621227037315,
+      393.96621227037315,
+      393.96621227037315,
+      393.96621227037315,
+      393.96621227037315,
+      344.95429857371363
+    ],
+    "record": {
+      "target_file": "Spirited Away OST\u300cAlways With Me \u29f8 Itsumo Nando Demo\u300dRu's Piano Cover [Sheet Music]_60s.mp3",
+      "generated_file": "Spirited Away OST\u300cAlways With Me \u29f8 Itsumo Nando Demo\u300dRu's Piano Cover [Sheet Music]_60s_generated.wav",
+      "caption_file": "Spirited Away OST\u300cAlways With Me \u29f8 Itsumo Nando Demo\u300dRu's Piano Cover [Sheet Music]_60s.txt",
+      "clap_target_text": 0.4200440049171448,
+      "clap_text_generated": 0.5885512828826904,
+      "clap_generated_target": 0.714040219783783,
+      "CE": null,
+      "CU": null,
+      "PC": null,
+      "PQ": null,
+      "melody_dtw_similarity": 0.6868367716211148,
+      "melody_dtw_norm": 313.16322837888526,
+      "melody_frame_accuracy": 0.019367991845056064
+    }
+  },
+  "\u3010\u697d\u8b5c\u3042\u308a\u3011IRIS OUT\u29f8\u7c73\u6d25\u7384\u5e2b\uff08\u30d4\u30a2\u30ce\u30bd\u30ed\u4e0a\u7d1a\uff09\u5287\u5834\u7248\u300e\u30c1\u30a7\u30f3\u30bd\u30fc\u30de\u30f3 \u30ec\u30bc\u7bc7\u300f\u4e3b\u984c\u6b4c\u3010\u30d4\u30a2\u30ce\u30a2\u30ec\u30f3\u30b8\u697d\u8b5c\u3011": {
+    "audio_emb_target_shape": [
+      1,
+      512
+    ],
+    "text_emb_shape": [
+      512
+    ],
+    "audio_emb_gen_shape": [
+      1,
+      512
+    ],
+    "f0_target_preview": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ],
+    "f0_gen_preview": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ],
+    "record": {
+      "target_file": "\u3010\u697d\u8b5c\u3042\u308a\u3011IRIS OUT\u29f8\u7c73\u6d25\u7384\u5e2b\uff08\u30d4\u30a2\u30ce\u30bd\u30ed\u4e0a\u7d1a\uff09\u5287\u5834\u7248\u300e\u30c1\u30a7\u30f3\u30bd\u30fc\u30de\u30f3 \u30ec\u30bc\u7bc7\u300f\u4e3b\u984c\u6b4c\u3010\u30d4\u30a2\u30ce\u30a2\u30ec\u30f3\u30b8\u697d\u8b5c\u3011.mp3",
+      "generated_file": "\u3010\u697d\u8b5c\u3042\u308a\u3011IRIS OUT\u29f8\u7c73\u6d25\u7384\u5e2b\uff08\u30d4\u30a2\u30ce\u30bd\u30ed\u4e0a\u7d1a\uff09\u5287\u5834\u7248\u300e\u30c1\u30a7\u30f3\u30bd\u30fc\u30de\u30f3 \u30ec\u30bc\u7bc7\u300f\u4e3b\u984c\u6b4c\u3010\u30d4\u30a2\u30ce\u30a2\u30ec\u30f3\u30b8\u697d\u8b5c\u3011_generated.wav",
+      "caption_file": "\u3010\u697d\u8b5c\u3042\u308a\u3011IRIS OUT\u29f8\u7c73\u6d25\u7384\u5e2b\uff08\u30d4\u30a2\u30ce\u30bd\u30ed\u4e0a\u7d1a\uff09\u5287\u5834\u7248\u300e\u30c1\u30a7\u30f3\u30bd\u30fc\u30de\u30f3 \u30ec\u30bc\u7bc7\u300f\u4e3b\u984c\u6b4c\u3010\u30d4\u30a2\u30ce\u30a2\u30ec\u30f3\u30b8\u697d\u8b5c\u3011.txt",
+      "clap_target_text": 0.46866995096206665,
+      "clap_text_generated": 0.5451550483703613,
+      "clap_generated_target": 0.7881286144256592,
+      "CE": null,
+      "CU": null,
+      "PC": null,
+      "PQ": null,
+      "melody_dtw_similarity": 0.7822511720474893,
+      "melody_dtw_norm": 217.74882795251074,
+      "melody_frame_accuracy": 0.015714285714285715
+    }
+  },
+  "\u3010\u83ca\u82b1\u53f0-\u5468\u6770\u502b\uff08D\u8abf\uff09\u3011\u9644\u4f34\u594f\u29f8\u92fc\u7434\u4f34\u594f(\u7af9\u7b1bBamboo flute\u3001Roland Aerophone AE-10) \u6f14\u594f\uff1a\u8607\u4fca\u742a(PSR-S970)audio-technica AT-2035_60s": {
+    "audio_emb_target_shape": [
+      1,
+      512
+    ],
+    "text_emb_shape": [
+      512
+    ],
+    "audio_emb_gen_shape": [
+      1,
+      512
+    ],
+    "f0_target_preview": [
+      NaN,
+      NaN,
+      NaN,
+      137.6882299590928,
+      160.0,
+      171.4837540058069,
+      171.4837540058069,
+      171.4837540058069,
+      166.60194440556904,
+      166.60194440556904
+    ],
+    "f0_gen_preview": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      339.0281901949745,
+      333.203888811138,
+      333.203888811138,
+      333.203888811138,
+      333.203888811138,
+      333.203888811138
+    ],
+    "record": {
+      "target_file": "\u3010\u83ca\u82b1\u53f0-\u5468\u6770\u502b\uff08D\u8abf\uff09\u3011\u9644\u4f34\u594f\u29f8\u92fc\u7434\u4f34\u594f(\u7af9\u7b1bBamboo flute\u3001Roland Aerophone AE-10) \u6f14\u594f\uff1a\u8607\u4fca\u742a(PSR-S970)audio-technica AT-2035_60s.mp3",
+      "generated_file": "\u3010\u83ca\u82b1\u53f0-\u5468\u6770\u502b\uff08D\u8abf\uff09\u3011\u9644\u4f34\u594f\u29f8\u92fc\u7434\u4f34\u594f(\u7af9\u7b1bBamboo flute\u3001Roland Aerophone AE-10) \u6f14\u594f\uff1a\u8607\u4fca\u742a(PSR-S970)audio-technica AT-2035_60s_generated.wav",
+      "caption_file": "\u3010\u83ca\u82b1\u53f0-\u5468\u6770\u502b\uff08D\u8abf\uff09\u3011\u9644\u4f34\u594f\u29f8\u92fc\u7434\u4f34\u594f(\u7af9\u7b1bBamboo flute\u3001Roland Aerophone AE-10) \u6f14\u594f\uff1a\u8607\u4fca\u742a(PSR-S970)audio-technica AT-2035_60s.txt",
+      "clap_target_text": 0.593176007270813,
+      "clap_text_generated": 0.49306827783584595,
+      "clap_generated_target": 0.5378721356391907,
+      "CE": null,
+      "CU": null,
+      "PC": null,
+      "PQ": null,
+      "melody_dtw_similarity": 0.7472210790546954,
+      "melody_dtw_norm": 252.77892094530458,
+      "melody_frame_accuracy": 0.05748987854251012
+    }
+  },
+  "\u7af9\u7b1b\uff5c\u8fd9\u4e16\u754c\u90a3\u4e48\u591a\u4eba_cover \u83ab\u6587\u851a_60s": {
+    "audio_emb_target_shape": [
+      1,
+      512
+    ],
+    "text_emb_shape": [
+      512
+    ],
+    "audio_emb_gen_shape": [
+      1,
+      512
+    ],
+    "f0_target_preview": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ],
+    "f0_gen_preview": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ],
+    "record": {
+      "target_file": "\u7af9\u7b1b\uff5c\u8fd9\u4e16\u754c\u90a3\u4e48\u591a\u4eba_cover \u83ab\u6587\u851a_60s.mp3",
+      "generated_file": "\u7af9\u7b1b\uff5c\u8fd9\u4e16\u754c\u90a3\u4e48\u591a\u4eba_cover \u83ab\u6587\u851a_60s_generated.wav",
+      "caption_file": "\u7af9\u7b1b\uff5c\u8fd9\u4e16\u754c\u90a3\u4e48\u591a\u4eba_cover \u83ab\u6587\u851a_60s.txt",
+      "clap_target_text": 0.5192070007324219,
+      "clap_text_generated": 0.421947717666626,
+      "clap_generated_target": 0.5181559324264526,
+      "CE": null,
+      "CU": null,
+      "PC": null,
+      "PQ": null,
+      "melody_dtw_similarity": 0.6047144288119906,
+      "melody_dtw_norm": 395.2855711880094,
+      "melody_frame_accuracy": 0.030592734225621414
+    }
+  }
+}
