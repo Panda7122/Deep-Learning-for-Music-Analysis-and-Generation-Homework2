@@ -25,7 +25,8 @@ for path in tqdm(audio_files, desc="Generating captions"):
     file_name = os.path.splitext(os.path.basename(path))[0]
     out_path = os.path.join(caption_dir, f"{file_name}.txt")
 
-    prompt = """This audio contains no vocals. Treat the track as fully instrumental—do not infer or invent any vocal content. Where vocal information would normally be reported, explicitly state "no vocals".
+    prompt = """
+This audio contains no vocals. Treat the track as fully instrumental—do not infer or invent any vocal content. Where vocal information would normally be reported, explicitly state "no vocals".
 
 Provide a detailed description of this audio track. Include:
 1) Overall genre(s) and specific subgenres or stylistic influences.

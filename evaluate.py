@@ -16,7 +16,12 @@ from scipy.signal import medfilt
 from sklearn.metrics.pairwise import cosine_similarity
 import torch
 from laion_clap import CLAP_Module
-
+import torchaudio
+import numpy as np
+from scipy.signal import savgol_filter
+import librosa
+import scipy.signal as signal
+from torchaudio import transforms as T
 BASE = "./home/fundwotsai/Deep_MIR_hw2"
 TARGET_DIR = os.path.join(BASE, "target_music_list_60s")
 CAPTION_DIR = os.path.join(BASE, "captions")
@@ -30,99 +35,94 @@ FMAX = 2000
 F0_HOP_SECONDS = 0.032  # pyin hop length ~ 32ms
 PITCH_CENTS_THRESHOLD = 50  # cents for framewise accuracy
 
+def extract_melody_one_hot(audio_path,
+                           sr=44100,
+                           cutoff=261.2, 
+                           win_length=2048,
+                           hop_length=256):
+    """
+    Extract a one-hot chromagram-based melody from an audio file (mono).
+    
+    Parameters:
+    -----------
+    audio_path : str
+        Path to the input audio file.
+    sr : int
+        Target sample rate to resample the audio (default: 44100).
+    cutoff : float
+        The high-pass filter cutoff frequency in Hz (default: Middle C ~ 261.2 Hz).
+    win_length : int
+        STFT window length for the chromagram (default: 2048).
+    hop_length : int
+        STFT hop length for the chromagram (default: 256).
+    
+    Returns:
+    --------
+    one_hot_chroma : np.ndarray, shape=(12, n_frames)
+        One-hot chromagram of the most prominent pitch class per frame.
+    """
+    # ---------------------------------------------------------
+    # 1. Load audio (Torchaudio => shape: (channels, samples))
+    # ---------------------------------------------------------
+    audio, in_sr = torchaudio.load(audio_path)
 
+    # Convert to mono by averaging channels: shape => (samples,)
+    audio_mono = audio.mean(dim=0)
+
+    # Resample if necessary
+    if in_sr != sr:
+        resample_tf = T.Resample(orig_freq=in_sr, new_freq=sr)
+        audio_mono = resample_tf(audio_mono)
+
+    # Convert torch.Tensor => NumPy array: shape (samples,)
+    y = audio_mono.numpy()
+
+    # ---------------------------------------------------------
+    # 2. Design & apply a high-pass filter (Butterworth, order=2)
+    # ---------------------------------------------------------
+    nyquist = 0.5 * sr
+    norm_cutoff = cutoff / nyquist
+    b, a = signal.butter(N=2, Wn=norm_cutoff, btype='high', analog=False)
+    
+    # filtfilt expects shape (n_samples,) for 1D
+    y_hp = signal.filtfilt(b, a, y)
+
+    # ---------------------------------------------------------
+    # 3. Compute the chromagram (librosa => shape: (12, n_frames))
+    # ---------------------------------------------------------
+    chroma = librosa.feature.chroma_stft(
+        y=y_hp,
+        sr=sr,
+        n_fft=win_length,      # Usually >= win_length
+        win_length=win_length,
+        hop_length=hop_length
+    )
+
+    # ---------------------------------------------------------
+    # 4. Convert chromagram to one-hot via argmax along pitch classes
+    # ---------------------------------------------------------
+    # pitch_class_idx => shape=(n_frames,)
+    pitch_class_idx = np.argmax(chroma, axis=0)
+
+    # Make a zero array of the same shape => (12, n_frames)
+    one_hot_chroma = np.zeros_like(chroma)
+
+    # For each frame (column in chroma), set the argmax row to 1
+    one_hot_chroma[pitch_class_idx, np.arange(chroma.shape[1])] = 1.0
+    
+    return one_hot_chroma
+def melody_score(target_audio_path, generated_audio_path):
+    gt_melody = extract_melody_one_hot(target_audio_path)      
+    gen_melody = extract_melody_one_hot(generated_audio_path)
+    min_len_melody = min(gen_melody.shape[1], gt_melody.shape[1])
+    matches = ((gen_melody[:, :min_len_melody] == gt_melody[:, :min_len_melody]) & (gen_melody[:, :min_len_melody] == 1)).sum()
+    accuracy = matches / min_len_melody
+    return accuracy
 def list_audio_files(folder):
     exts = {".wav", ".flac", ".mp3", ".ogg", ".m4a"}
     files = [os.path.join(folder, f) for f in os.listdir(folder) if Path(f).suffix.lower() in exts]
     files.sort()
     return files
-
-def read_audio(path, sr=SR):
-    y, _sr = librosa.load(path, sr=sr, mono=True)
-    return y, sr
-
-def extract_f0_pyin(path, sr=SR, fmin=FMIN, fmax=FMAX, hop_length=None):
-    y, _ = librosa.load(path, sr=sr, mono=True)
-    if hop_length is None:
-        hop_length = int(sr * F0_HOP_SECONDS)
-    f0, voiced_flag, voiced_prob = librosa.pyin(y, fmin=fmin, fmax=fmax, sr=sr, hop_length=hop_length)
-    times = librosa.frames_to_time(np.arange(len(f0)), sr=sr, hop_length=hop_length)
-    f0_clean = f0.copy()
-    nan_mask = np.isnan(f0_clean)
-    if nan_mask.all():
-        return f0_clean, voiced_flag.astype(bool), times
-    idx = np.arange(len(f0_clean))
-    good = ~nan_mask
-    f0_clean[nan_mask] = np.interp(idx[nan_mask], idx[good], f0_clean[good])
-    try:
-        f0_clean = medfilt(f0_clean, kernel_size=5)
-    except Exception:
-        pass
-    f0_clean_masked = f0_clean.copy()
-    f0_clean_masked[~voiced_flag.astype(bool)] = np.nan
-    return f0_clean_masked, voiced_flag.astype(bool), times
-
-def hz_to_cents_ratio(hz_ref, hz_est):
-    if np.isnan(hz_ref) or np.isnan(hz_est) or hz_ref <= 0 or hz_est <= 0:
-        return np.nan
-    return 1200.0 * np.log2(hz_est / hz_ref)
-
-def framewise_pitch_accuracy(f0_target, mask_target, f0_gen, mask_gen, cents_threshold=PITCH_CENTS_THRESHOLD):
-    L = min(len(f0_target), len(f0_gen))
-    f0_t = f0_target[:L]
-    f0_g = f0_gen[:L]
-    m_t = mask_target[:L]
-    m_g = mask_gen[:L]
-
-    voiced_both = m_t & m_g
-    if voiced_both.sum() == 0:
-        return 0.0
-    cents = []
-    for a, b in zip(f0_t[voiced_both], f0_g[voiced_both]):
-        if np.isnan(a) or np.isnan(b) or a <= 0 or b <= 0:
-            cents.append(np.nan)
-        else:
-            cents.append(abs(1200.0 * math.log2(b / a)))
-    cents = np.array([c for c in cents if not np.isnan(c)])
-    if len(cents) == 0:
-        return 0.0
-    acc = np.mean(cents <= cents_threshold)
-    return float(acc)
-
-def dtw_distance_normalized(f0_target, f0_gen):
-    import numpy as np
-    def prepare(arr):
-        arr = np.array(arr, dtype=float)
-        nan_mask = np.isnan(arr)
-        if nan_mask.all():
-            return np.zeros_like(arr) + 1e6
-        idx = np.arange(len(arr))
-        good = ~nan_mask
-        arr[nan_mask] = np.interp(idx[nan_mask], idx[good], arr[good])
-        return arr
-
-    a = prepare(f0_target)
-    b = prepare(f0_gen)
-    def to_log(x):
-        x = np.array(x)
-        x[x <= 1e-6] = 1e-6
-        return 1200.0 * np.log2(x)
-    A = to_log(a).reshape(-1, 1)
-    B = to_log(b).reshape(-1, 1)
-    D = cdist(A, B, metric="euclidean") 
-    n, m = D.shape
-    acc = np.zeros((n + 1, m + 1)) + 1e12
-    acc[0, 0] = 0.0
-    for i in range(1, n + 1):
-        for j in range(1, m + 1):
-            cost = D[i - 1, j - 1]
-            acc[i, j] = cost + min(acc[i - 1, j], acc[i, j - 1], acc[i - 1, j - 1])
-    dtw_dist = acc[n, m]
-    norm = dtw_dist / (n + m)
-    sim = max(0.0, 1.0 - (norm / 1000.0))
-    sim = float(min(1.0, max(0.0, sim)))
-    return sim, float(norm)
-
 class CLAPWrapper:
     def __init__(self, device="cpu"):
         self.device = device
@@ -192,9 +192,7 @@ def main():
             "clap_text_generated": None,
             "clap_generated_target": None,
             "CE": None, "CU": None, "PC": None, "PQ": None,
-            "melody_dtw_similarity": None,
-            "melody_dtw_norm": None,
-            "melody_frame_accuracy": None
+            "melody_accuracy":None
         }
         verbose[base] = {}
 
@@ -229,23 +227,9 @@ def main():
         verbose[base]["text_emb_shape"] = None if text_emb is None else np.asarray(text_emb).shape
         verbose[base]["audio_emb_gen_shape"] = None if audio_emb_gen is None else np.asarray(audio_emb_gen).shape
 
-        f0_t, mask_t, times_t = extract_f0_pyin(tpath)
-        if gpath:
-            f0_g, mask_g, times_g = extract_f0_pyin(gpath)
-        else:
-            f0_g, mask_g = np.array([]), np.array([])
-        if len(f0_g) > 0:
-            acc = framewise_pitch_accuracy(f0_t, mask_t, f0_g, mask_g, cents_threshold=PITCH_CENTS_THRESHOLD)
-            rec["melody_frame_accuracy"] = acc
-            dtw_sim, dtw_norm = dtw_distance_normalized(f0_t, f0_g)
-            rec["melody_dtw_similarity"] = dtw_sim
-            rec["melody_dtw_norm"] = dtw_norm
-            verbose[base]["f0_target_preview"] = f0_t[:10].tolist()
-            verbose[base]["f0_gen_preview"] = f0_g[:10].tolist()
-        else:
-            rec["melody_frame_accuracy"] = None
-            rec["melody_dtw_similarity"] = None
-            rec["melody_dtw_norm"] = None
+        ms = melody_score(tpath, gpath)
+        rec["melody_accuracy"] = ms
+        
 
 
         results.append(rec)
